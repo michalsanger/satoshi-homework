@@ -1,20 +1,13 @@
 import type { NextPage } from "next";
-import Head from "next/head";
+import Layout from "../components/layout";
 
 const Home: NextPage = () => {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2">
-      <Head>
-        <title>Trezor shop</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
-        <h1 className="text-6xl font-bold">
-          Welcome to <span className="text-blue-600">Trezor shop!</span>
-        </h1>
-      </main>
-    </div>
+    <Layout title="Homepage">
+      <div className="px-4 py-8 sm:px-0">
+        <div className="h-96 rounded-lg border-4 border-dashed border-gray-200" />
+      </div>
+    </Layout>
   );
 };
 
