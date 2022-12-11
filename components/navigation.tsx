@@ -1,8 +1,12 @@
 import Link from "next/link";
 import { Disclosure } from "@headlessui/react";
-import { Bars3Icon, XMarkIcon, ShoppingCartIcon } from "@heroicons/react/24/outline";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import ShoppingCartButton from "./shoppingCartButton";
+import { useContext } from "react";
+import { CartContext } from "./cartContext";
 
 export default function Navigation() {
+  const { cart } = useContext(CartContext);
   return (
     <Disclosure as="nav" className="border-b border-gray-200 bg-white">
       {({ open }) => (
@@ -35,15 +39,7 @@ export default function Navigation() {
               </div>
               {open ? null : (
                 <div className="hidden sm:ml-6 sm:flex sm:items-center">
-                  <Link href="/cart" passHref data-testid="shopping-cart">
-                    <button
-                      type="button"
-                      className="rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                    >
-                      <span className="sr-only">View notifications</span>
-                      <ShoppingCartIcon className="h-6 w-6" aria-hidden="true" />
-                    </button>
-                  </Link>
+                  <ShoppingCartButton showAlert={cart.size > 0} />
                 </div>
               )}
               <div className="-mr-2 flex items-center sm:hidden">
@@ -83,15 +79,7 @@ export default function Navigation() {
             </div>
             <div className="border-t border-gray-200 pt-4 pb-3">
               <div className="flex items-center px-4">
-                <Link href="/cart" passHref data-testid="shopping-cart">
-                  <button
-                    type="button"
-                    className="ml-auto flex-shrink-0 rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                  >
-                    <span className="sr-only">Shopping cart</span>
-                    <ShoppingCartIcon className="h-6 w-6" aria-hidden="true" />
-                  </button>
-                </Link>
+                <ShoppingCartButton showAlert={cart.size > 0} />
               </div>
             </div>
           </Disclosure.Panel>

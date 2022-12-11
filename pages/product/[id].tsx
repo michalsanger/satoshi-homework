@@ -1,5 +1,7 @@
 import type { NextPage, GetStaticProps } from "next";
 import Image from "next/image";
+import { useContext, FormEvent } from "react";
+import { CartContext } from "../../components/cartContext";
 import Layout from "../../components/layout";
 import { Product, products } from "../../data/products";
 
@@ -28,6 +30,12 @@ export const getStaticProps: GetStaticProps = async (context) => {
 };
 
 const ProductPage: NextPage<Props> = ({ product }) => {
+  const { addItem } = useContext(CartContext);
+  const handleOnSubmit = (event: FormEvent) => {
+    event.preventDefault();
+    addItem(product.id);
+  };
+
   return (
     <Layout title={product.name}>
       <div className="bg-white">
@@ -72,7 +80,7 @@ const ProductPage: NextPage<Props> = ({ product }) => {
 
           <div className="mt-10 lg:col-start-1 lg:row-start-2 lg:max-w-lg lg:self-start">
             <section aria-labelledby="options-heading">
-              <form>
+              <form onSubmit={handleOnSubmit}>
                 <div className="mt-10">
                   <button
                     type="submit"
