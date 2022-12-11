@@ -3,40 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Layout from "../components/layout";
 
-const products = [
-  {
-    id: 1,
-    name: "Seed keeper",
-    href: "/product",
-    price: 9,
-    imageSrc: "/products/seed-keeper.jpg",
-    imageAlt: "Handy seed keeper",
-  },
-  {
-    id: 2,
-    name: "Seed capsule",
-    href: "/product",
-    price: 35,
-    imageSrc: "/products/seed-capsule.jpg",
-    imageAlt: "Keep the seed safe",
-  },
-  {
-    id: 3,
-    name: "Enhanced seed capsule",
-    href: "/product",
-    price: 48,
-    imageSrc: "/products/enhanced-seed-capsule.jpg",
-    imageAlt: "Multi purpose seed capsule",
-  },
-  {
-    id: 4,
-    name: "Large seed keeper",
-    href: "/product",
-    price: 15,
-    imageSrc: "/products/large-seed-keeper.jpg",
-    imageAlt: "Extra large seed keeper",
-  },
-];
+import { products } from "../data/products";
 
 const Home: NextPage = () => {
   return (

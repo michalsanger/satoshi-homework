@@ -12,5 +12,5 @@ test("product page works", async ({ page, isMobile }) => {
   await expect(page.locator("h1")).toContainText("Products");
 
   await page.locator("a.product").first().click();
-  await expect(page).toHaveURL("/product");
+  await expect(page).toHaveURL("/product/1");
 });

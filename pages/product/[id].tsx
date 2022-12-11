@@ -1,16 +1,41 @@
-import type { NextPage } from "next";
+import type { NextPage, GetStaticProps } from "next";
 import Image from "next/image";
-import Layout from "../components/layout";
+import Layout from "../../components/layout";
+import { Product, products } from "../../data/products";
 
-const Product: NextPage = () => {
+type Props = {
+  product: Product;
+};
+
+export async function getStaticPaths() {
+  return {
+    paths: products.map((p) => p.href),
+    fallback: false,
+  };
+}
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  const productId = Number(context.params?.id);
+  const product = products.find((p) => p.id === productId);
+
+  if (product === undefined) {
+    return { notFound: true };
+  }
+
+  return {
+    props: { product },
+  };
+};
+
+const ProductPage: NextPage<Props> = ({ product }) => {
   return (
-    <Layout title="Enhanced seed capsule">
+    <Layout title={product.name}>
       <div className="bg-white">
         <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
           <div className="lg:max-w-lg lg:self-end">
             <div className="mt-4">
               <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                Enhanced seed capsule
+                {product.name}
               </h1>
             </div>
 
@@ -20,26 +45,15 @@ const Product: NextPage = () => {
               </h2>
 
               <div className="flex items-center">
-                <p className="text-lg text-gray-900 sm:text-xl">$48</p>
+                <p className="text-lg text-gray-900 sm:text-xl">${product.price}</p>
               </div>
 
               <div className="mt-4 space-y-6">
-                <p className="text-base text-gray-500">
-                  The &quot;enhancement&quot; in this product refers to any number of features or
-                  characteristics that make it superior to other seed capsules or seed phrase
-                  storage methods.
-                </p>
-                <p className="text-base text-gray-500">
-                  For example, the capsule has advanced encryption and security measures to protect
-                  the seed phrase from being accessed by unauthorized individuals. It also have
-                  additional features, such as a built-in display for viewing the seed phrase, or a
-                  mechanism for generating a new seed phrase if the original one is lost or damaged.
-                </p>
-                <p className="text-base text-gray-500">
-                  Overall, an &quot;Enhanced seed capsule&quot; that looks like a bottle is a
-                  convenient and secure way to store a critical component of a bitcoin hardware
-                  wallet.
-                </p>
+                {product.description.split("\n\n").map((p, i) => (
+                  <p className="text-base text-gray-500" key={i}>
+                    {p}
+                  </p>
+                ))}
               </div>
             </section>
           </div>
@@ -47,10 +61,11 @@ const Product: NextPage = () => {
           <div className="mt-10 lg:col-start-2 lg:row-span-2 lg:mt-0 lg:self-center">
             <div className="aspect-w-1 aspect-h-1 overflow-hidden rounded-lg">
               <Image
-                src="/products/enhanced-seed-capsule.jpg"
-                alt="Enhanced seed capsule"
+                src={product.imageSrc}
+                alt={product.imageAlt}
                 className="h-full w-full object-cover object-center"
                 fill
+                priority
               />
             </div>
           </div>
@@ -75,4 +90,4 @@ const Product: NextPage = () => {
   );
 };
 
-export default Product;
+export default ProductPage;
