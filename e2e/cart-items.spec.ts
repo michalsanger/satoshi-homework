@@ -10,10 +10,12 @@ test("item can be removed from cart", async ({ page, isMobile }) => {
   expect(page.getByTestId("shopping-cart-notification")).toBeVisible();
   await page.getByTestId("shopping-cart").click();
 
+  await expect(page.locator("h1")).toHaveText("Shopping cart");
   expect(page.locator(".cart-item")).toHaveCount(1);
 
   await page.click("text=Remove");
   expect(page.locator(".cart-item")).toHaveCount(0);
+  await expect(page.locator("h1")).toHaveText("Shopping cart is empty");
 });
 
 test("quantity can be changed", async ({ page, isMobile }) => {

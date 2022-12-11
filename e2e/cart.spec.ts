@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-test("shopping cart page works", async ({ page, isMobile }) => {
+test("empty shopping cart page works", async ({ page, isMobile }) => {
   await page.goto("/");
 
   if (isMobile) {
@@ -9,7 +9,7 @@ test("shopping cart page works", async ({ page, isMobile }) => {
 
   await page.getByTestId("shopping-cart").click();
   await expect(page).toHaveURL("/cart");
-  await expect(page.locator("h1")).toContainText("Shopping Cart");
+  await expect(page.locator("h1")).toHaveText("Shopping cart is empty");
 });
 
 test("cart notification works", async ({ page, isMobile }) => {

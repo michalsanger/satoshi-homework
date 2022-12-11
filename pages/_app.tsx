@@ -5,7 +5,7 @@ import CartProvider from "../components/cartContext";
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <CartProvider>
-      <Component {...pageProps} />;
+      <Component {...pageProps} />
     </CartProvider>
   );
 }

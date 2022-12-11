@@ -12,35 +12,35 @@ const Cart: NextPage = () => {
   const productsInCart = products.filter((p) => cart.has(p.id));
 
   return (
-    <Layout title="Shopping Cart">
-      <div className="bg-white">
-        <div className="mx-auto max-w-4xl py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-bold tracking-tight text-gray-900">Shopping Cart</h1>
+    <Layout heading={`Shopping cart${productsInCart.length === 0 ? " is empty" : ""}`}>
+      {productsInCart.length === 0 ? null : (
+        <div className="bg-white">
+          <div className="mx-auto max-w-4xl py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
+            <form>
+              <div>
+                <h2 className="sr-only">Items in your shopping cart</h2>
 
-          <form className="mt-12">
-            <div>
-              <h2 className="sr-only">Items in your shopping cart</h2>
+                <ul
+                  role="list"
+                  className="divide-y divide-gray-200 border-t border-b border-gray-200"
+                >
+                  {productsInCart.map((product) => (
+                    <CartItem
+                      key={product.id}
+                      onQuantityChange={addItem}
+                      onRemove={removeItem}
+                      product={product}
+                      quantity={cart.get(product.id) ?? 1}
+                    />
+                  ))}
+                </ul>
+              </div>
 
-              <ul
-                role="list"
-                className="divide-y divide-gray-200 border-t border-b border-gray-200"
-              >
-                {productsInCart.map((product) => (
-                  <CartItem
-                    key={product.id}
-                    onQuantityChange={addItem}
-                    onRemove={removeItem}
-                    product={product}
-                    quantity={cart.get(product.id) ?? 1}
-                  />
-                ))}
-              </ul>
-            </div>
-
-            {productsInCart.length > 0 ? <OrderSummary products={products} cart={cart} /> : null}
-          </form>
+              {productsInCart.length > 0 ? <OrderSummary products={products} cart={cart} /> : null}
+            </form>
+          </div>
         </div>
-      </div>
+      )}
     </Layout>
   );
 };
