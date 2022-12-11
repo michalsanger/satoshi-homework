@@ -16,7 +16,14 @@ Make sure [Playwright](https://playwright.dev/) is installed:
 npx playwright install
 ```
 
-Run tests:
+Compile and run the app in production mode:
+
+```bash
+npm run build
+npm run start
+```
+
+Run tests in another terminal:
 
 ```bash
 npm test

@@ -4,7 +4,7 @@ test("products page works", async ({ page, isMobile }) => {
   await page.goto("/");
 
   if (isMobile) {
-    await page.click('[data-testid="mobile-menu-button"]');
+    await page.getByTestId("mobile-menu-button").click();
   }
 
   await page.click("text=Products");

@@ -27,20 +27,22 @@ export default function OrderSummary({ products, cart }: Props) {
             <div className="flex items-center justify-between py-4">
               <dt className="text-gray-600">Subtotal</dt>
               <dd className="font-medium text-gray-900" data-testid="subtotal">
-                ${subtotal}
+                ${subtotal.toFixed(2)}
               </dd>
             </div>
             <div className="flex items-center justify-between py-4">
               <dt className="text-gray-600">Shipping</dt>
-              <dd className="font-medium text-gray-900">${shipping}</dd>
+              <dd className="font-medium text-gray-900">${shipping.toFixed(2)}</dd>
             </div>
             <div className="flex items-center justify-between py-4">
               <dt className="text-gray-600">Tax</dt>
-              <dd className="font-medium text-gray-900">${tax}</dd>
+              <dd className="font-medium text-gray-900">${tax.toFixed(2)}</dd>
             </div>
             <div className="flex items-center justify-between py-4">
               <dt className="text-base font-medium text-gray-900">Order total</dt>
-              <dd className="text-base font-medium text-gray-900">${subtotal + shipping + tax}</dd>
+              <dd className="text-base font-medium text-gray-900">
+                ${(subtotal + shipping + tax).toFixed(2)}
+              </dd>
             </div>
           </dl>
         </div>
