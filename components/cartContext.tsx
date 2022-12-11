@@ -2,11 +2,12 @@ import { useState, createContext, ReactNode } from "react";
 
 export type Cart = Map<number, number>; // key - item ID, value - quantity
 
-type CartContextType = {
+export type CartContextType = {
   cart: Cart;
   addItem: (id: number, quantity?: number) => void;
   removeItem: (id: number) => void;
 };
+
 type CartProviderProps = {
   children: ReactNode;
   initialValue?: Cart;
