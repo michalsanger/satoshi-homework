@@ -1,6 +1,7 @@
 import type { NextPage, GetStaticProps } from "next";
 import Image from "next/image";
 import { useContext, FormEvent } from "react";
+import AddItemButton from "../../components/addItemButton";
 import { CartContext } from "../../components/cartContext";
 import Layout from "../../components/layout";
 import { Product, products } from "../../data/products";
@@ -82,12 +83,7 @@ const ProductPage: NextPage<Props> = ({ product }) => {
             <section aria-labelledby="options-heading">
               <form onSubmit={handleOnSubmit}>
                 <div className="mt-10">
-                  <button
-                    type="submit"
-                    className="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
-                  >
-                    Add to cart
-                  </button>
+                  <AddItemButton />
                 </div>
               </form>
             </section>
