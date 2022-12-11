@@ -23,7 +23,7 @@ export default function CartItem({ product, quantity, onRemove, onQuantityChange
   };
 
   return (
-    <li key={product.id} className="flex py-6 sm:py-10">
+    <li key={product.id} className="cart-item flex py-6 sm:py-10">
       <div className="flex-shrink-0">
         <Image
           src={product.imageSrc}
@@ -58,6 +58,7 @@ export default function CartItem({ product, quantity, onRemove, onQuantityChange
               id={`quantity-${product.id}`}
               name={`quantity-${product.id}`}
               className="block max-w-full rounded-md border border-gray-300 py-1.5 text-left text-base font-medium leading-5 text-gray-700 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm"
+              data-testid="quantity"
             >
               <option value={1}>1</option>
               <option value={2}>2</option>

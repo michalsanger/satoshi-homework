@@ -26,7 +26,9 @@ export default function OrderSummary({ products, cart }: Props) {
           <dl className="-my-4 divide-y divide-gray-200 text-sm">
             <div className="flex items-center justify-between py-4">
               <dt className="text-gray-600">Subtotal</dt>
-              <dd className="font-medium text-gray-900">${subtotal}</dd>
+              <dd className="font-medium text-gray-900" data-testid="subtotal">
+                ${subtotal}
+              </dd>
             </div>
             <div className="flex items-center justify-between py-4">
               <dt className="text-gray-600">Shipping</dt>
